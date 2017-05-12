@@ -1,0 +1,16 @@
+general:
+  artifacts:
+    - build
+
+deployment:
+  staging:
+    branch: develop
+    commands:
+      - npm install -g serverless
+      - serverless deploy -v --stage dev --region ap-southeast-1
+
+  production:
+    branch: master
+    commands:
+      - npm install -g serverless
+      - serverless deploy -v --stage prod --region ap-southeast-1

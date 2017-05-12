@@ -1,0 +1,22 @@
+service: lambda-microservice-template
+
+plugins:
+  - serverless-webpack
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+
+functions:
+  first:
+    handler: first.default
+    events:
+      - http:
+          method: GET
+          path: first
+  second:
+    handler: second.default
+    events:
+      - http:
+          method: GET
+          path: second
