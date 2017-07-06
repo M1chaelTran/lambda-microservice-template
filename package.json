@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Lambda Microservice Template",
   "scripts": {
-    "dev": "serverless webpack serve -v",
+    "start": "serverless webpack serve -v",
     "test": "eslint .",
     "bundle": "serverless webpack"
   },
