@@ -4,7 +4,7 @@
   "description": "Lambda Microservice Template",
   "scripts": {
     "start": "serverless webpack serve -v",
-    "test": "eslint . && serverless webpack invoke --function main --path event.json",
+    "test": "eslint . && serverless webpack invoke --function first --path event.json",
     "bundle": "serverless webpack"
   },
   "author": "MichaelTran",
