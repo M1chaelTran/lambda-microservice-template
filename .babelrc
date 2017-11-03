@@ -1,4 +1,12 @@
 {
-  "plugins": ["transform-runtime"],
-  "presets": ["es2015", "stage-0"]
+  "presets": [
+    ["env", {
+      "targets": {
+        "node": "current",
+        "browsers": ["last 2 versions"]
+      },
+      "include": [],
+      "exclude": []
+    }]
+  ]
 }

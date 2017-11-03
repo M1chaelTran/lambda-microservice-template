@@ -1,31 +1,55 @@
 {
-  "name": "lambda-microservice-template",
-  "version": "1.0.0",
-  "description": "Lambda Microservice Template",
   "scripts": {
+    "test": "eslint . && serverless invoke local --function first --path event.json",
+    "test:watch": "yarn test --watch",
+    "test:update": "yarn test --update",
+    "test:coverage": "yarn test --coverage",
+    "lint": "eslint \"src/**\" --cache",
+    "lint:fix": "yarn lint --fix",
+    "lint:staged": "yarn lint:fix --max-warnings=0",
+    "precommit": "lint-staged",
+    "prepush": "yarn test",
     "start": "serverless webpack serve -v",
-    "test": "eslint . && serverless webpack invoke --function first --path event.json",
     "bundle": "serverless webpack"
   },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "lint:staged",
+      "git add"
+    ],
+    "*.{json,css,scss,less}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "name": "lambda-microservice-template",
+  "version": "1.0.1",
+  "description": "Lambda Microservice Template",
   "author": "MichaelTran",
   "repository": "https://github.com/M1chaelTran/lambda-microservice-template",
   "eslintConfig": {
-    "extends": "google"
+    "extends": "prettier"
   },
   "devDependencies": {
     "aws-sdk": "^2.6.3",
     "babel-cli": "^6.14.0",
     "babel-core": "^6.13.2",
-    "babel-eslint": "^7.2.3",
+    "babel-eslint": "^8.0.1",
     "babel-loader": "^7.0.0",
     "babel-plugin-transform-runtime": "^6.12.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-stage-0": "^6.5.0",
-    "eslint": "^3.5.0",
-    "serverless-webpack": "^1.0.0-beta.2",
-    "webpack": "^2.5.1"
+    "eslint": "^4.10.0",
+    "eslint-config-prettier": "^2.7.0",
+    "eslint-config-with-prettier": "^2.1.2",
+    "eslint-plugin-prettier": "^2.3.1",
+    "prettier": "^1.7.4",
+    "serverless-webpack": "^4.0.0",
+    "webpack": "^3.8.1"
   },
   "dependencies": {
-    "babel-runtime": "6.23.0"
-  }
+    "babel-runtime": "6.26.0"
+  },
+  "license": "MIT"
 }

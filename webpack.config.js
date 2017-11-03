@@ -1,39 +1,39 @@
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack')
+const path = require('path')
+const slsw = require('serverless-webpack')
 
 module.exports = {
-  entry: {
-    first: './functions/first.js',
-    second: './functions/second.js'
-  },
+  entry: slsw.lib.entries,
   output: {
     libraryTarget: 'commonjs',
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: '[name].js',
   },
-  externals: [
-    'aws-sdk'
-  ],
+  externals: ['aws-sdk'],
   target: 'node',
   devtool: 'source-map',
   plugins: [
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         unused: true,
         dead_code: true,
         warnings: false,
-        drop_debugger: true
-      }
-    })
+        drop_debugger: true,
+      },
+    }),
   ],
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['babel'],
-      include: __dirname,
-      exclude: /node_modules/,
-    }]
-  }
-};
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+        ],
+      },
+    ],
+  },
+}
